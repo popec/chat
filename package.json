@@ -1,0 +1,28 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "Chat with Express, TypeScript, Vue.js, Vuex, WebSockets",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/popec/chat.git"
+  },
+  "keywords": [
+    "chat",
+    "typescript",
+    "vue",
+    "vuex",
+    "websockes",
+    "ws",
+    "express"
+  ],
+  "author": "popec",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/popec/chat/issues"
+  },
+  "homepage": "https://github.com/popec/chat#readme"
+}
