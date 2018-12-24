@@ -4,7 +4,8 @@
   "description": "Chat with Express, TypeScript, Vue.js, Vuex, WebSockets",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "lint": "tslint -c tslint.json src/**/*.ts"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
   "devDependencies": {
     "@types/express": "^4.16.0",
     "@types/ws": "^6.0.1",
+    "tslint": "^5.12.0",
     "typescript": "^3.2.2"
   }
 }
