@@ -2,11 +2,11 @@
     <div class="chat-window">
         <div class="row">
             <div class="col-md-10">
-                <ChatMessages :user-name="userName"/>
-                <ChatMessage :user-name="userName"/>
+                <ChatMessages :user-name="userName" :messages="messages"/>
+                <ChatMessage :user-name="userName" v-on:message="onMessage"/>
             </div>
             <div class="col-md-2">
-                <ChatUsers :user-name="userName"/>
+                <ChatUsers :user-name="userName" :users="users"/>
             </div>
         </div>
     </div>
@@ -33,6 +33,18 @@ export default class ChatWindow extends Vue {
         return this.$store.getters.name;
     }
 
+    get messages(): Message[] {
+        return this.$store.getters.messages;
+    }
+
+    get users(): string[] {
+        return this.$store.getters.users;
+    }
+
+    public onMessage(message: string) {
+        SocketService.socket.emit('message', createMessage(this.userName, message, Type.Message));
+    }
+
     public mounted() {
         SocketService.socket.on('message', function(message: Message) {
             var container = document.querySelector(".messages");
@@ -41,28 +53,3 @@ export default class ChatWindow extends Vue {
     }
 }
 </script>
-
-<style>
-    .users,
-    .messages {
-        border: 1px solid #ccc;
-        min-height: 300px;
-        max-height: 300px;
-        overflow-y: scroll;
-    }
-
-    .users ul,
-    .messages ul {
-        list-style: none;
-        padding: 5px 10px;
-    }
-
-    .sender {
-        font-weight: bold;
-    }
-
-    .user.you,
-    .sender.you {
-        color: red;
-    }
-</style>

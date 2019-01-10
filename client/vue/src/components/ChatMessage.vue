@@ -5,15 +5,13 @@
         </div>
         <div class="col-md-11">
             <form novalidate v-on:submit.prevent="onSubmit">
-                <input type="text" class="form-control" v-model="message"/>
+                <input type="text" class="form-control" v-model="message" autofocus/>
             </form>
         </div>
     </div>
 </template>
 <script lang="ts">
     import { Component, Prop, Vue } from 'vue-property-decorator';
-    import SocketService from '@/services/SocketService';
-    import { Type, createMessage } from '@/models/Message';
 
     @Component
     export default class ChatMessage extends Vue {
@@ -21,12 +19,8 @@
         private message: string = '';
 
         public onSubmit() {
-            SocketService.socket.emit('message', createMessage(this.userName, this.message, Type.Message));
+            this.$emit('message', this.message);
             this.message = '';
         }
     }
 </script>
-
-<style scoped>
-
-</style>

@@ -14,10 +14,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 @Component
 export default class ChatUsers extends Vue {
     @Prop() private userName!: string;
-
-    get users(): string[] {
-        return this.$store.getters.users;
-    }
+    @Prop() private users!: string[];
 }
 </script>
 
@@ -34,7 +31,7 @@ export default class ChatUsers extends Vue {
         padding: 5px 10px;
     }
 
-    .user.you {
+    .you {
         color: red;
     }
 </style>

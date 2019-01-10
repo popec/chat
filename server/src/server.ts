@@ -1,7 +1,7 @@
 import * as express from "express";
 import * as http from "http";
 import { AddressInfo } from "net";
-import * as io from 'socket.io';
+import * as io from "socket.io";
 
 const app = express();
 
@@ -32,7 +32,7 @@ enum Type {
     Users,
     User,
     Messages,
-    Message
+    Message,
 }
 
 class Message {
@@ -47,25 +47,33 @@ const messages: Message[] = [];
 const users: { [s: string]: string; } = {};
 
 const getUsers = () => {
-    return Object.keys(users).map(key => users[key]);
+    return Object.keys(users).map((key) => users[key]);
 };
 
 wss.on("connection", (ws: io.Socket) => {
-console.log("client connected");
+    console.log("client connected");
+
     ws.on("message", (message: Message) => {
-console.log("on message");
+        console.log("on message");
+
         try {
-            addMessage(message);
+            if (message.type === Type.Message) {
+                addMessage(message);
+            }
+
             if (addUser(ws.id, message.sender)) {
                 wss.send(createMessage("Server", users, Type.Users));
             }
+
             wss.emit("message", message);
         } catch (e) {
             console.warn(e);
         }
     });
 
-    ws.on('disconnect', function () {
+    ws.on("disconnect", () => {
+        console.log("client disconnected");
+
         delete users[ws.id];
         wss.send(createMessage("Server", getUsers(), Type.Users));
     });
@@ -74,8 +82,7 @@ console.log("on message");
     ws.send(createMessage("Server", messages, Type.Messages));
 
     ws.on("error", (err) => {
-console.log("on error");
-        console.warn(`Client disconnected - reason: ${err}`);
+        console.error(err);
     });
 });
 

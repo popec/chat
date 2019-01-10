@@ -11,15 +11,9 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { Message } from '@/models/Message';
 
 export default Vue.extend({
-    props: [ 'userName' ],
-    computed: {
-        messages(): Message[] {
-            return this.$store.getters.messages;
-        }
-    }
+    props: [ 'userName', 'messages' ],
 });
 
 </script>
@@ -35,5 +29,9 @@ export default Vue.extend({
     .messages ul {
         list-style: none;
         padding: 5px 10px;
+    }
+
+    .you {
+        color: red;
     }
 </style>

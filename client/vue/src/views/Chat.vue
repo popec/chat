@@ -7,7 +7,7 @@
 
 <script lang="ts">
     import { Component, Vue } from 'vue-property-decorator';
-    import ChatWindow from '@/components/ChatWindow.vue'; // @ is an alias to /src
+    import ChatWindow from '@/containers/ChatWindow.vue'; // @ is an alias to /src
 
     @Component({
         components: {
