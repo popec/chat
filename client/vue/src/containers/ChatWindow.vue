@@ -25,7 +25,7 @@ import ChatUsers from '@/components/ChatUsers.vue';
         ChatMessages,
         ChatMessage,
         ChatUsers,
-    }
+    },
 })
 
 export default class ChatWindow extends Vue {
@@ -46,10 +46,12 @@ export default class ChatWindow extends Vue {
     }
 
     public mounted() {
-        SocketService.socket.on('message', function(message: Message) {
-            var container = document.querySelector(".messages");
-            (container) && (container.scrollTop = container.scrollHeight);
-        })
+        SocketService.socket.on('message', (message: Message) => {
+            const container = document.querySelector('.messages');
+            if (container) {
+                (container.scrollTop = container.scrollHeight);
+            }
+        });
     }
 }
 </script>

@@ -4,14 +4,14 @@ import { Message } from '@/models/Message';
 
 Vue.use(Vuex);
 
-const messages: Message[] = [];
-const users: string[] = [];
+const MESSAGES: Message[] = [];
+const USERS: string[] = [];
 
 export default new Vuex.Store({
   state: {
     name: '',
-    users: users,
-    messages: messages,
+    users: USERS,
+    messages: MESSAGES,
   },
   mutations: {
     setName: (state, name: string) => {

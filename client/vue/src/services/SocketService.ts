@@ -2,8 +2,8 @@ import io from 'socket.io-client';
 import { Message, Type } from '@/models/Message';
 import store from '@/store';
 
-export default new class SocketService {
-    socket: any;
+class SocketService {
+    public socket: any;
 
     constructor() {
         this.socket = io('localhost:13666');
@@ -23,3 +23,5 @@ export default new class SocketService {
         });
     }
 }
+
+export default new SocketService();
