@@ -22,7 +22,8 @@ class SocketService {
 
                 // get users list from server
                 case Type.Users:
-                    store.commit('[socket] Type.Users', message.content);
+                    console.log('[socket] Type.Users, message');
+                    store.commit('setUsers', message.content);
                     break;
             }
         });
